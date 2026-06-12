@@ -1,0 +1,23 @@
+﻿__pycache__/
+*.py[cod]
+*.class
+.python-version
+.pytest_cache/
+.mypy_cache/
+.coveragecoverage.xml
+htmlcov/
+dist/
+build/
+.eggs/
+*.egg-info/
+.env
+.venv
+venv/
+ENV/
+.env.*
+pip-wheel-metadata/
+*.egg
+# PyCharm
+.idea/
+# VS Code
+.vscode/

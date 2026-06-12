@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+google-generativeai
+pypdf
+python-docx
+weasyprint
+jinja2
+pydantic
+python-multipart
+httpx

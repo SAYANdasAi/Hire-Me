@@ -1,0 +1,78 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum UserRole {
+  JOB_SEEKER
+  RECRUITER
+}
+
+model User {
+  id        String   @id @default(cuid())
+  clerkId   String   @unique
+  name      String
+  avatar    String?
+  role      UserRole
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Job {
+  id         String   @id @default(cuid())
+  title      String
+  company    String
+  location   String
+  experience String?
+  salary     String?
+  summary    String   // Gemini-generated
+  applyUrl   String
+  source     String   // 'jsearch' | 'serpapi'
+  createdAt  DateTime @default(now())
+}
+
+model Post {
+  id          String   @id @default(cuid())
+  authorId    String
+  title       String
+  body        String
+  imageUrls   String[]
+  tags        String[]
+  applyUrl    String
+  likesCount  Int      @default(0)
+  createdAt   DateTime @default(now())
+}
+
+model SearchLog {
+  id           String   @id @default(cuid())
+  userId       String
+  query        String
+  resultsCount Int
+  createdAt    DateTime @default(now())
+}
+
+model PostLike {
+  userId String
+  postId String
+
+  @@id([userId, postId])
+}
+
+model SavedJob {
+  userId String
+  jobId  String
+
+  @@id([userId, jobId])
+}
+
+model SavedPost {
+  userId String
+  postId String
+
+  @@id([userId, postId])
+}
